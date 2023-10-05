@@ -20,12 +20,14 @@ if os.path.exists(csv_file):
             "ip_out": file['ip_out']
       })
   #Ejecutamos masscan
+  i = 0
   for ip in ipList:
     ip_inicio = ip["ip_enter"]
     ip_fin = ip["ip_out"]
-    command = f"masscan -p445 {ip_inicio}-{ip_fin} --max-rate 3000 > outputTest"
+    command = f"masscan -p445 {ip_inicio}-{ip_fin} --max-rate 3000 > ./output/outputTest{i}"
     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    print(result)
+    i+=1
+  print(i)
       
 else:
   print("El archivo CSV no existe en la ruta proporcionada.")
