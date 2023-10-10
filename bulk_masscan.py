@@ -2,6 +2,11 @@ import csv
 import json
 import os
 import subprocess
+import datetime
+
+#Fecha y Hora de Inicio
+fecha_hora_actual = datetime.datetime.now()
+fecha_hora_formateada = fecha_hora_actual.strftime('%Y-%m-%d %H:%M:%S')
 
 # Ruta completa al archivo CSV
 csv_file = "iplist/es_development.csv"
@@ -29,8 +34,9 @@ if os.path.exists(csv_file):
     totalFiles+=1
   print(totalFiles)
   #Juntamos Ficheros salida en oput
-  file = "./output/output"
+  file = "./output/output_result"
   with open(file, 'w') as base_file:
+      base_file.write('Fecha y hora actual: {}\n'.format(fecha_hora_formateada))
       for i in range(0, totalFiles):
         fileName = f"./output/outputRange{i}"
         try:
